@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    /* Estilos básicos para formatar a página */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    input {
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 8px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Login</h2>
+  <input type="text" id="username" placeholder="Nome de usuário"><br>
+  <input type="password" id="password" placeholder="Senha"><br>
+  <button onclick="validateLogin()">Login</button>
+
+  <script>
+    class Login {
+      constructor(id, senha) {
+        this._id = id;
+        this._senha = senha;
+      }
+
+      get id() {
+        return this._id;
+      }
+
+      set id(novoId) {
+        this._id = novoId;
+      }
+
+      validarSenha(senhaDigitada) {
+        return this._senha === senhaDigitada;
+      }
+    }
+
+    class Diretoria extends Login {
+      constructor(nome, id, senha) {
+        super(id, senha);
+        this.nome = nome;
+      }
+
+      mostrarInf() {
+        console.log(`Nome: ${this.nome}`);
+      }
+    }
+
+    class Funcionario extends Login {
+      constructor(nome, id, senha) {
+        super(id, senha);
+        this.nome = nome;
+      }
+
+      mostrarInf() {
+        console.log(`Nome: ${this.nome}`);
+      }
+    }
+
+    class Administrador extends Login {
+      constructor(nome, id, senha) {
+        super(id, senha);
+        this.nome = nome;
+      }
+
+      mostrarInf() {
+        console.log(`Nome: ${this.nome}`);
+      }
+    }
+
+    let diretor = new Diretoria('João', '123', 'senha123');
+    let funcionario = new Funcionario('Tiago', '1232', 'senha1232');
+    let adm = new Administrador('Rafael', '1057', 'senha1057');
+
+    function validateLogin() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      let user;
+      if (username === diretor.nome) {
+        user = diretor;
+      } else if (username === funcionario.nome) {
+        user = funcionario;
+      } else if (username === adm.nome) {
+        user = adm;
+      }
+
+      if (user && user.validarSenha(password)) {
+        alert('Login bem-sucedido!');
+        user.mostrarInf();
+      } else {
+        alert('Nome de usuário ou senha incorretos!');
+      }
+    }
+  </script>
+</body>
+</html>
