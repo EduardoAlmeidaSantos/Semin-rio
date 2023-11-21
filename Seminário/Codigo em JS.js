@@ -1,6 +1,6 @@
 class Login {
-  constructor(id, senha) {
-    this._id = id;
+  constructor(id, senha) {                         
+    this._id = id;                            
     this._senha = senha;
   }
 
@@ -57,7 +57,7 @@ class Funcionario extends Login {
   }
 }
 
-const func = new Funcionario('Tiago', '1232', 'senha1232');
+let func = new Funcionario('Tiago', '1232', 'senha1232');
 
 try {
   const senhaDigitada = 'senha1232';
